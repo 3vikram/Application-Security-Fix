@@ -1,0 +1,10 @@
+var sanitize = require('mongo-sanitize');
+
+// The sanitize function will strip out any keys that start with '$' in the input,
+// so you can pass it to MongoDB without worrying about malicious users overwriting
+// query selectors.
+var clean = sanitize(req.params.username);
+
+Users.findOne({ name: clean }, function(err, doc) {
+  // ...
+});
