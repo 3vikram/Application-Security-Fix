@@ -1,0 +1,9 @@
+private List allowedURLsWhitelist = Arrays.asList(new String[]{
+    "http://my-subsystem/my-app?" , "http://10.0.0.15/my-app2?"
+});
+public String callRemoteServer(String url) {
+    if ( ! allowedURLsWhitelist.contains(url) {
+        throw new IllegalArgumentException("URL " + url + " is not allowed!!!");
+    }
+    // ... your code ...
+}
