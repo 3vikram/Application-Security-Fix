@@ -1,0 +1,5 @@
+check(alertInfo, Match.ObjectIncluding({
+    meta: Match.ObjectIncluding({
+        appId: String
+    })
+}));
