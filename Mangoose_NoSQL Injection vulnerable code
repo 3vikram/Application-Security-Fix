@@ -1,0 +1,7 @@
+var query = {
+    $where: "this.canceledOrders > " + req.body.canceledOrders
+}
+
+db.collection('users').find(query).each(function(err, doc) {
+    console.log(doc);
+})
