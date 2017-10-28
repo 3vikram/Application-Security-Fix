@@ -1,0 +1,13 @@
+var sanitize = require('mongo-sanitize');
+
+app.post('/user', function (req, res) {
+
+    var query = {
+        username: sanitize(req.body.username),
+        password: sanitize(req.body.password)
+    }
+
+    db.collection('users').findOne(query, function (err, user) {
+        console.log(user);
+    });
+});
