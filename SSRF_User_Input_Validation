@@ -1,0 +1,1 @@
+String url = "http://my-subsystem/search?q=" + URLEncoder.encode(userSuppliedValue, "UTF-8");
