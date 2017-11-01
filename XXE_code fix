@@ -3,8 +3,6 @@ public class TradeDocumentBuilderFactory {
     public static DocumentBuilderFactory newDocumentBuilderFactory() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
-//              documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", true);
-//              documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", true);
 				documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 				documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);        
 				documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);			
@@ -12,3 +10,11 @@ public class TradeDocumentBuilderFactory {
             throw new RuntimeException(e);
         }
         return documentBuilderFactory;
+
+--------------------------------------------------------------------------------------------------------------
+
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+dbf.setXIncludeAware(false);
+dbf.setExpandEntityReferences(false);
+dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false
