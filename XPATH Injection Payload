@@ -1,0 +1,24 @@
+Notes.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+<book category="COOKING">
+<title lang="it">Everyday Italian</title>
+<author>Giada De Laurentiis</author>
+<year>2005</year>
+<price>30.00</price>
+</book>
+<book category="CHILDREN">
+<title lang="en">Harry Potter</title>
+<author>J K. Rowling</author>
+<year>2005</year>
+<price>19.99</price>
+</book>
+</bookstore>
+----------------------------------------
+
+XPATH Query for above XML document:
+
+/bookstore/book[1]
+/bookstore/book[price>25.00]/title
+//title[@lang='en']
+/bookstore/book[last()]
