@@ -17,5 +17,5 @@ def xss_test(**url_params):
     print("Test complete")
 
 
-#result = xss_test(vikram=160988, txtSearch='name', nithya='t', id=190829301238, token='abl89430jaca90')
+#result = xss_test(vikram=160988, txtSearch='name', nack='t', id=190829301238, token='abl89430jaca90')
 #print(result)
