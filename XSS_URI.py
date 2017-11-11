@@ -14,15 +14,12 @@ def xss_test(**url_params):
             response = requests.get(uri, params=url_params, headers = req_headers)
         elif http_method == "POST":
             response = requests.post(uri, data=url_params, headers = req_headers)
-            print("POST method executed")
         if payload.rstrip() in str(response.content):
-            print('Vulnerable to XSS')
-            print('{} uri parameter is effected and the payload is {}'.format(uri_parameters, payload.rstrip()))
+            print('Vulnerable to XSS: {} uri parameter is effected and the payload is {}'.format(uri_parameters, payload.rstrip()))
             break
         else:
             print('Not Vulnerable to XSS')
     print("Test complete")
-    print(req_headers)
 
 
 a = xss_test(txtSearch="123",a="test")
