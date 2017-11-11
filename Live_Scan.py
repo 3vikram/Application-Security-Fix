@@ -25,6 +25,7 @@ def ping(userin):
     print("Number of servers down {}".format(number_of_servers_down))
     print("Number of servers failed to reach {}".format(number_of_servers_failed_to_reach))
     print("list of live servers are {}".format(list_live_servers))
+    report.close()
 
 
 output=ping("C:\\Users\\trra\\Documents\\ip.txt")
