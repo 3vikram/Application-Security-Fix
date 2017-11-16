@@ -27,6 +27,7 @@ def xss_test(**url_params):
                 print('{} Not Vulnerable to XSS'.format(uparam))
                 url_params[uparam] = "aaaa"
     print("Test complete")
+    fl.close()
 
 
 a = xss_test(txtSearch="123",a="test",b=123)
