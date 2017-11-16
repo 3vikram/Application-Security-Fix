@@ -20,7 +20,7 @@ def xss_test(**url_params):
             elif http_method == "POST":
                 response = requests.post(uri, data=url_params, headers = req_headers)
             if payload.rstrip() in str(response.content):
-                print('Vulnerable to XSS: {} parameter is effected and the payload is {}'.format(uparam, payload.rstrip()))
+                print('{} Vulnerable to XSS and the payload is {}'.format(uparam, payload.rstrip()))
                 vulnerable_param.append(uparam)
                 url_params[uparam] = "aaaa"
             else:
