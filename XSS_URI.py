@@ -6,7 +6,7 @@ def xss_test(**url_params):
     uri = input("Enter the uri to test: ")
     uri_parameters = input("Enter the uri parameter to test: ")
     req_headers = ast.literal_eval(input("Enter the headers to be sent with the request: "))
-    http_method = input("Enter the HTTP method: ").upper()
+    http_method = input("Enter the HTTP method: ").upper().strip()
     fl = open(file, 'r+')
     vulnerable_param = []
     for payload in fl:
