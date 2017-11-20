@@ -35,19 +35,13 @@ def Service_Scan():
                         if "open" in line1:
                             No_Ports_Open = No_Ports_Open + 1
                             fs.write(line1)
+                            service = line1[line1.index('open  ') + 6:]
+                            vuln_commans = 'nmap  --script=' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
+                            print('Running Vulnerability Scan on service {}'.format(service))
+                            response2 = os.system(vuln_commans)
                             continue
                     print(No_Ports_Open)
                     fs.close()
-    Service_Vuln_Scan()
-
-
-def Service_Vuln_Scan():
-    with open('Final_service.txt', 'r+') as fs:
-        for service_list in fs:
-            service = service_list[service_list.index('open  ')+6:]
-            vuln_commans = 'nmap  --script=' + service + '*' +
-            response = os.system(vuln_commans)
-            print(vuln_commans)
 
 def File_Exists_Check():
     if os.path.isfile('./live_ip.csv'):
