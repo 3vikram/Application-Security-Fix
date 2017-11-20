@@ -7,6 +7,7 @@ def Live_Scan():
     Final_IP_Address = IP_Subnet + IP_Last_Oct
     File_Exists_Check()
     a = 'nmap  -sP -oN Livescan.txt ' + Final_IP_Address
+    print('Running Live IP scan!')
     response = os.system(a)
     with open('Livescan.txt','r+') as ff:
         with open('live_ip.csv','a+') as aa:
@@ -24,6 +25,7 @@ def Live_Scan():
         print("incorrect input")
 
 def Service_Scan():
+    print('Running Service detection scan!')
     No_Ports_Open = 0
     with open('live_ip.csv', 'r+') as aa:
         for ips in aa:
@@ -44,6 +46,7 @@ def Service_Scan():
                     fs.close()
 
 def File_Exists_Check():
+    print('Deleting Existing scan files!')
     if os.path.isfile('./live_ip.csv'):
         os.remove("live_ip.csv")
     if os.path.isfile('.Livescan.txt'):
@@ -52,6 +55,7 @@ def File_Exists_Check():
         os.remove("port_scan.txt")
     if os.path.isfile('./Final_service.txt'):
         os.remove("Final_service.txt")
+    print('Deleted scan files!')
 
 result = Live_Scan()
 print(result)
