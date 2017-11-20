@@ -46,7 +46,7 @@ def Service_Scan():
                     fs.close()
 
 def File_Exists_Check():
-    print('Deleting Existing scan files!')
+    print('Deleting existing scan files!')
     if os.path.isfile('./live_ip.csv'):
         os.remove("live_ip.csv")
     if os.path.isfile('.Livescan.txt'):
@@ -55,7 +55,7 @@ def File_Exists_Check():
         os.remove("port_scan.txt")
     if os.path.isfile('./Final_service.txt'):
         os.remove("Final_service.txt")
-    print('Deleted scan files!')
+    print('Deleted existing scan files!')
 
 result = Live_Scan()
 print(result)
