@@ -21,7 +21,7 @@ class Nmapscan:
                 aa.close()
         if self.Port_Scan == "yes" or "y":
             self.port_scan_results = self.Service_Scan()
-            print(port_scan_results)
+            print(self.port_scan_results)
         elif self.Port_Scan == "no" or "n":
             print("Thank You for using me! See you later for a port scan :)")
         else:
@@ -32,9 +32,9 @@ class Nmapscan:
         self.No_Ports_Open = 0
         with open('live_ip.csv', 'r+') as aa:
             for ips in aa:
-                b = 'nmap -P0 -sT -oN port_scan.txt ' + ips
+                b = 'nmap -Pn -sT -oN port_scan.txt ' + ips
                 response1 = os.system(b)
-                c = 'nmap -P0 -sT -O -sV -vv -oN verbose_scan.txt ' + ips
+                c = 'sudo nmap -Pn -sT -O -sV -vv -oN verbose_scan.txt ' + ips
                 response2 = os.system(c)
                 if self.Vuln_Scan == 'yes' or 'y':
                     with open('Final_service.txt','a+') as fs:
@@ -44,7 +44,7 @@ class Nmapscan:
                                     self.No_Ports_Open = self.No_Ports_Open + 1
                                     fs.write(line1)
                                     service = line1[line1.index('open  ') + 6:]
-                                    vuln_commands = 'nmap  --script=' + '*' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
+                                    vuln_commands = 'nmap  -Pn --script=' + '*' + service.rstrip() + '* ' + '-oN Vuln_report.txt ' + ips
                                     print('Running Vulnerability Scan on service {}'.format(service))
                                     response3 = os.system(vuln_commands)
                                     continue
@@ -62,6 +62,8 @@ class Nmapscan:
             os.remove("port_scan.txt")
         if os.path.isfile('./Final_service.txt'):
             os.remove("Final_service.txt")
+        if os.path.isfile('./Vuln_report.txt'):
+            os.remove("Vuln_report.txt")
         print('Deleted scan files!')
 
 result = Nmapscan()
