@@ -34,6 +34,8 @@ class Nmapscan:
             for ips in aa:
                 b = 'nmap -P0 -sT -oN port_scan.txt ' + ips
                 response1 = os.system(b)
+                c = 'nmap -0 -sT -O -sV -oN verbose_scan' + ips
+                response2 = os.system(c)
                 if self.Vuln_Scan == 'yes' or 'y':
                     with open('Final_service.txt','a+') as fs:
                         with open('port_scan.txt','r+') as r1:
@@ -44,7 +46,7 @@ class Nmapscan:
                                     service = line1[line1.index('open  ') + 6:]
                                     vuln_commands = 'nmap  --script=' + '*' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
                                     print('Running Vulnerability Scan on service {}'.format(service))
-                                    response2 = os.system(vuln_commands)
+                                    response3 = os.system(vuln_commands)
                                     continue
                             print(self.No_Ports_Open)
                 elif self.Vuln_Scan == 'no' or 'n':
