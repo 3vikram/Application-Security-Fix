@@ -34,7 +34,7 @@ class Nmapscan:
             for ips in aa:
                 b = 'nmap -P0 -sT -oN port_scan.txt ' + ips
                 response1 = os.system(b)
-                c = 'nmap -0 -sT -O -sV -oN verbose_scan' + ips
+                c = 'nmap -P0 -sT -O -sV -vv -oN verbose_scan.txt ' + ips
                 response2 = os.system(c)
                 if self.Vuln_Scan == 'yes' or 'y':
                     with open('Final_service.txt','a+') as fs:
