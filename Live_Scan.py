@@ -42,7 +42,7 @@ class Nmapscan:
                                     self.No_Ports_Open = self.No_Ports_Open + 1
                                     fs.write(line1)
                                     service = line1[line1.index('open  ') + 6:]
-                                    vuln_commands = 'nmap  --script=' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
+                                    vuln_commands = 'nmap  --script=' + '*' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
                                     print('Running Vulnerability Scan on service {}'.format(service))
                                     response2 = os.system(vuln_commands)
                                     continue
