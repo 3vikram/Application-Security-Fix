@@ -3,13 +3,13 @@ import os
 class Nmapscan:
 
     def Live_Scan(self):
-        IP_Subnet = input("Enter the subnet: " )
-        IP_Last_Oct = input("Enter the last octet in Subnet address: ")
-        Port_Scan = input("Do you want to perform port scan?: ").lower().strip()
+        self.IP_Subnet = input("Enter the subnet: " )
+        self.IP_Last_Oct = input("Enter the last octet in Subnet address: ")
+        self.Port_Scan = input("Do you want to perform port scan?: ").lower().strip()
         self.Vuln_Scan = input("Do you want to perform vulnerability scan for the identified services? ").lower().strip()
-        Final_IP_Address = IP_Subnet + IP_Last_Oct
-        File_Exists_Check(self)
-        a = 'nmap  -sP -oN Livescan.txt ' + Final_IP_Address
+        self.Final_IP_Address = self.IP_Subnet + self.IP_Last_Oct
+        self.File_Exists_Check()
+        a = 'nmap  -sP -oN Livescan.txt ' + self.Final_IP_Address
         print('Running Live IP scan!')
         response = os.system(a)
         with open('Livescan.txt','r+') as ff:
@@ -19,17 +19,17 @@ class Nmapscan:
                         aa.write(line[line.index('for ')+ 4:])
                         continue
                 aa.close()
-        if Port_Scan == "yes" or "y":
-            port_scan_results = Service_Scan()
+        if self.Port_Scan == "yes" or "y":
+            self.port_scan_results = self.Service_Scan()
             print(port_scan_results)
-        elif Port_Scan == "no" or "n":
+        elif self.Port_Scan == "no" or "n":
             print("Thank You for using me! See you later for a port scan :)")
         else:
             print("incorrect input")
 
     def Service_Scan(self):
         print('Running Service detection scan!')
-        No_Ports_Open = 0
+        self.No_Ports_Open = 0
         with open('live_ip.csv', 'r+') as aa:
             for ips in aa:
                 b = 'nmap -P0 -sT -oN port_scan.txt ' + ips
@@ -39,15 +39,15 @@ class Nmapscan:
                         with open('port_scan.txt','r+') as r1:
                             for line1 in r1:
                                 if "open" in line1:
-                                    No_Ports_Open = No_Ports_Open + 1
+                                    self.No_Ports_Open = self.No_Ports_Open + 1
                                     fs.write(line1)
                                     service = line1[line1.index('open  ') + 6:]
-                                    vuln_commans = 'nmap  --script=' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
+                                    vuln_commands = 'nmap  --script=' + service.rstrip() + '* ' + ips + ' -oN Vuln_report.txt'
                                     print('Running Vulnerability Scan on service {}'.format(service))
-                                    response2 = os.system(vuln_commans)
+                                    response2 = os.system(vuln_commands)
                                     continue
-                            print(No_Ports_Open)
-                else:
+                            print(self.No_Ports_Open)
+                elif self.Vuln_Scan == 'no' or 'n':
                     print("See you next time for a service vulnerability scan on your asset!")
 
     def File_Exists_Check(self):
