@@ -1,7 +1,7 @@
 import xlrd
 import os
 
-def Delete_file():
+def delete_file():
     # Delete files every time at the start having Issue Keys
     if os.path.isfile("sql injection.txt"):
         os.remove("sql injection.txt")
@@ -40,7 +40,7 @@ def Delete_file():
     elif os.path.isfile("no category.txt"):
         os.remove("no category.txt")
 
-def Classification():
+def classification():
     Delete_file()
     file_location = "test1.xlsx"
     workbook = xlrd.open_workbook(file_location)
@@ -270,5 +270,5 @@ def Classification():
     print("{0} DoS issues found and the tickets are {1}".format(no_dos_issues,dos_key))
     print("{0} no category issues found and the tickets are {1}".format(no_no_category_issues,no_category_key))
 
-final_result = Classification()
+final_result = classification()
 print(final_result)
