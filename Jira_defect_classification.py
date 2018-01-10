@@ -9,7 +9,7 @@ def defects():
     password = input("Enter your corp password: ")
     jira_query = input("Enter the jira jql query: ")
     #Authentication
-    login_credentials = JIRA(basic_auth=(user_name, password), options={'server': 'https://jira.intuit.com'})
+    login_credentials = JIRA(basic_auth=(user_name, password), options={'server': 'https://<jira_domain>.com'})
     jql_query = jira_query
 
     # Delete files every time at the start having Issue Keys
